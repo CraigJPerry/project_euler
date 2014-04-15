@@ -3,6 +3,7 @@
 
 
 import unittest
+import itertools
 from euler import multiples_of_3_and_5, fibonacci
 
 
@@ -21,7 +22,7 @@ class Problem1(unittest.TestCase):
 class Problem2(unittest.TestCase):
 
     def test_given_example_first_ten_terms(self):
-        terms = tuple(islice(fibonacci(), 10))
+        terms = tuple(itertools.islice(fibonacci(), 10))
         self.assertTupleEqual(terms, (1, 2, 3, 5, 8, 13, 21, 34, 55, 89))
 
 
