@@ -14,10 +14,6 @@ class Problem1(unittest.TestCase):
         self.assertTupleEqual(answer, (3, 5, 6, 9))
         self.assertEqual(sum(answer), 23)
 
-    def test_required_answer_for_multiples_below_one_thousand(self):
-        answer = sum(multiples_of_3_and_5(1000))
-        self.assertEqual(answer, 233168)
-
 
 class Problem2(unittest.TestCase):
 
