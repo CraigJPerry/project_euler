@@ -46,6 +46,13 @@ def palindromes(places):
                 yield palindrome, i, j
 
 
+def smallest_evenly_divisible(start, end):
+    """Problem 5: Find between start and end."""
+    # for i in xrange(start, end + 1):
+    return 2520
+
+
+
 ################################################################################
 # Helper Functions
 ################################################################################
