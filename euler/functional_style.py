@@ -161,6 +161,9 @@ def main():
     problem7 = nth(10001, primes())
     print "Problem 7: %d" % problem7
 
+    problem8 = products_of()
+    print "Problem 8: %d" % max(problem8)
+
 
 if __name__ == "__main__":
     main()
