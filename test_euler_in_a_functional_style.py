@@ -49,7 +49,6 @@ class Problem4(unittest.TestCase):
 
     def test_largest_two_digit_palindrome_example(self):
         largest = max(palindromes(2))
-        print largest
         self.assertEqual(largest[0], 9009)
 
     def test_largest_single_digit_palindrome(self):
