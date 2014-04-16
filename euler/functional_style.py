@@ -71,6 +71,18 @@ def sum_square_difference(upper_limit):
     return square_of_sum - sum_of_squares
 
 
+def primes():
+    """Problem 7: Infinite prime numbers generator."""
+    seen = set()
+    for candidate in itertools.count(2):
+        for prime in seen:
+            if candidate % prime == 0:
+                break
+        else:
+            seen.add(candidate)
+            yield candidate
+
+
 ################################################################################
 # Helper Functions
 ################################################################################
@@ -91,6 +103,11 @@ def even(generator):
     return (i for i in generator if i % 2 == 0)
 
 
+def nth(n, generator):
+    """Return nth item from generator."""
+    return next(itertools.islice(generator, n-1, n))
+
+
 def main():
     problem1 = below(1000, multiples_of_3_and_5())
     print "Problem 1: %d" % sum(problem1)
@@ -109,6 +126,9 @@ def main():
 
     problem6 = sum_square_difference(100)
     print "Problem 6: %d" % problem6
+
+    problem7 = nth(10001, primes())
+    print "Problem 7: %d" % problem7
 
 
 if __name__ == "__main__":
