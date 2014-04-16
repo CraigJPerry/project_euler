@@ -3,8 +3,10 @@
 
 
 import unittest
-import itertools
-from euler import first, below, multiples_of_3_and_5, fibonacci, prime_factors
+from euler_in_a_functional_style import (
+    first, below, multiples_of_3_and_5, fibonacci, prime_factors,
+    palindromes
+)
 
 
 class Problem1(unittest.TestCase):
@@ -41,6 +43,18 @@ class Problem3(unittest.TestCase):
 
     def test_simple_case_21(self):
         self.verify_factors_for(21, (3, 7))
+
+
+class Problem4(unittest.TestCase):
+
+    def test_largest_two_digit_palindrome_example(self):
+        largest = max(palindromes(2))
+        print largest
+        self.assertEqual(largest[0], 9009)
+
+    def test_largest_single_digit_palindrome(self):
+        largest = max(palindromes(1))
+        self.assertEqual(largest[0], 9)
 
 
 if __name__ == "__main__":
