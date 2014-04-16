@@ -35,14 +35,15 @@ def prime_factors(number):
             break
 
 
-def largest_palindrome(places):
-    """Problem 4: Largest palindrome from 2 factors up to 'places' wide."""
-    maximum_value = int(math.pow(10, places) - 1)
-    for i in xrange(maximum_value, 0, -1):
-        for j in xrange(maximum_value, 0, -1):
-            palindrome = str(i * j)
-            if palindrome == palindrome[::-1]:
-                return int(palindrome)
+def palindromes(places):
+    """Problem 4: Generate all palindromes of 2 factors  up to 'places' wide."""
+    maximum_value = int(math.pow(10, places))
+    for i in xrange(maximum_value):
+        for j in xrange(maximum_value):
+            candidate = str(i * j)
+            if candidate == candidate[::-1]:
+                palindrome = int(candidate)
+                yield palindrome, i, j
 
 
 ################################################################################
@@ -70,8 +71,8 @@ def main():
     problem3 = prime_factors(600851475143)
     print "Problem 3: %d" % max(problem3)
 
-    problem4 = largest_palindrome(3)
-    print "Problem 4: %d" % problem4
+    problem4 = max(palindromes(3))
+    print "Problem 4: %d (%d * %d)" % problem4
 
 
 if __name__ == "__main__":

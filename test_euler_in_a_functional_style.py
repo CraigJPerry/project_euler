@@ -3,10 +3,9 @@
 
 
 import unittest
-import itertools
 from euler_in_a_functional_style import (
     first, below, multiples_of_3_and_5, fibonacci, prime_factors,
-    largest_palindrome
+    palindromes
 )
 
 
@@ -49,10 +48,13 @@ class Problem3(unittest.TestCase):
 class Problem4(unittest.TestCase):
 
     def test_largest_two_digit_palindrome_example(self):
-        self.assertEqual(largest_palindrome(2), 9009)
+        largest = max(palindromes(2))
+        print largest
+        self.assertEqual(largest[0], 9009)
 
     def test_largest_single_digit_palindrome(self):
-        self.assertEqual(largest_palindrome(1), 9)
+        largest = max(palindromes(1))
+        self.assertEqual(largest[0], 9)
 
 
 if __name__ == "__main__":
