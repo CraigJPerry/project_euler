@@ -28,6 +28,10 @@ class Problem3(unittest.TestCase):
         factors = tuple(prime_factors(13195))
         self.assertTupleEqual(factors, (5, 7, 13, 29))
 
+    def test_simple_case_20(self):
+        factors = tuple(prime_factors(20))
+        self.assertTupleEqual(factors, (2, 2, 5))
+
 
 if __name__ == "__main__":
     unittest.main()
