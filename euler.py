@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 
+import math
 import itertools
 
 
@@ -14,6 +15,20 @@ def fibonacci(a=1, b=2):
     while True:
         yield a
         a, b = b, b+a
+
+
+def prime_factors(number):
+    """Problem 3: Generate the prime factors of number."""
+    while True:
+        limit = int(math.sqrt(number) + 1)
+        for i in xrange(2, limit):
+            if number % i == 0:
+                yield i
+                number /= i
+                break
+        else:
+            yield number
+            break
 
 
 def main():
