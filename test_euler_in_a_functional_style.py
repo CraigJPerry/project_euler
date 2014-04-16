@@ -4,7 +4,7 @@
 
 import unittest
 import itertools
-from euler import (
+from euler_in_a_functional_style import (
     first, below, multiples_of_3_and_5, fibonacci, prime_factors,
     largest_palindrome
 )
