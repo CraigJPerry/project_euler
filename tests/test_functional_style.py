@@ -3,7 +3,7 @@
 
 
 import unittest
-from euler_in_a_functional_style import (
+from euler.functional_style import (
     first, below, multiples_of_3_and_5, fibonacci, prime_factors,
     palindromes, smallest_evenly_divisible
 )
