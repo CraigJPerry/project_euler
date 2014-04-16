@@ -6,7 +6,7 @@ import unittest
 from euler.functional_style import (
     first, below, multiples_of_3_and_5, fibonacci, prime_factors,
     palindromes, smallest_evenly_divisible, sum_square_difference,
-    nth, primes
+    nth, primes, products_of
 )
 
 
@@ -73,6 +73,17 @@ class Problem7(unittest.TestCase):
 
     def test_given_example(self):
         self.assertEqual(nth(6, primes()), 13)
+
+
+class Problem8(unittest.TestCase):
+
+    def test_simple_example(self):
+        products = products_of(2, "12345")
+        self.assertEqual(max(products), 20)
+
+    def test_harder_example(self):
+        products = products_of(3, "1234567890")
+        self.assertEqual(max(products), 7*8*9)
 
 
 if __name__ == "__main__":
