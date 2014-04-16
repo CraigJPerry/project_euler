@@ -120,6 +120,9 @@ def main():
     problem6 = sum_square_difference(100)
     print "Problem 6: %d" % problem6
 
+    problem7 = nth(10001, primes())
+    print "Problem 7: %d" % problem7
+
 
 if __name__ == "__main__":
     main()
