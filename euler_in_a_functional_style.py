@@ -47,10 +47,12 @@ def palindromes(places):
 
 
 def smallest_evenly_divisible(start, end):
-    """Problem 5: Find between start and end."""
-    # for i in xrange(start, end + 1):
-    return 2520
-
+    """Problem 5: Find smallest number evenly divisble but all numbers
+    between start and end."""
+    all_nums = range(start, end + 1)
+    for i in itertools.count(1):
+        if all(map(lambda x: i % x == 0, all_nums)):
+            return i
 
 
 ################################################################################
