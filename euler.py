@@ -37,6 +37,9 @@ def main():
     problem2 = itertools.takewhile(lambda x: x<4000000, fibonacci())
     print "Problem 2: %d" % sum(even for even in problem2 if even % 2 == 0)
 
+    problem3 = prime_factors(600851475143)
+    print "Problem 3: %d" % max(problem3)
+
 
 if __name__ == "__main__":
     main()
