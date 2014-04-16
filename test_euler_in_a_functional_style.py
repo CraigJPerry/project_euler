@@ -5,7 +5,7 @@
 import unittest
 from euler_in_a_functional_style import (
     first, below, multiples_of_3_and_5, fibonacci, prime_factors,
-    palindromes
+    palindromes, smallest_evenly_divisible
 )
 
 
@@ -55,6 +55,12 @@ class Problem4(unittest.TestCase):
     def test_largest_single_digit_palindrome(self):
         largest = max(palindromes(1))
         self.assertEqual(largest[0], 9)
+
+
+class Problem5(unittest.TestCase):
+
+    def test_given_example(self):
+        self.assertEqual(smallest_evenly_divisible(1, 10), 2520)
 
 
 if __name__ == "__main__":
