@@ -62,6 +62,15 @@ def smallest_evenly_divisible(start, end):
             return i
 
 
+def sum_square_difference(upper_limit):
+    """Problem 6: Find the difference of sum of squares and square of
+    sum for natural numbers to upper_limit."""
+    naturals = range(upper_limit + 1)
+    sum_of_squares = reduce(lambda x, y: x + y*y, naturals)
+    square_of_sum = sum(naturals) ** 2
+    return square_of_sum - sum_of_squares
+
+
 ################################################################################
 # Helper Functions
 ################################################################################
@@ -97,6 +106,9 @@ def main():
 
     problem5 = smallest_evenly_divisible(1, 20)
     print "Problem 5: %d" % problem5
+
+    problem6 = sum_square_difference(100)
+    print "Problem 6: %d" % problem6
 
 
 if __name__ == "__main__":
