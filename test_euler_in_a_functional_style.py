@@ -51,6 +51,9 @@ class Problem4(unittest.TestCase):
     def test_largest_two_digit_palindrome_example(self):
         self.assertEqual(largest_palindrome(2), 9009)
 
+    def test_largest_single_digit_palindrome(self):
+        self.assertEqual(largest_palindrome(1), 9)
+
 
 if __name__ == "__main__":
     unittest.main()
