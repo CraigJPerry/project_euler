@@ -73,12 +73,17 @@ def first(n, generator):
     return itertools.islice(generator, n)
 
 
+def even(generator):
+    """Yield only the even terms from generator."""
+    return (i for i in generator if i % 2 == 0)
+
+
 def main():
     problem1 = below(1000, multiples_of_3_and_5())
     print "Problem 1: %d" % sum(problem1)
 
-    problem2 = below(4000000, fibonacci())
-    print "Problem 2: %d" % sum(even for even in problem2 if even % 2 == 0)
+    problem2 = even(below(4000000, fibonacci()))
+    print "Problem 2: %d" % sum(problem2)
 
     problem3 = prime_factors(600851475143)
     print "Problem 3: %d" % max(problem3)
