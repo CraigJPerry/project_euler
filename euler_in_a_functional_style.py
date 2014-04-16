@@ -70,6 +70,9 @@ def main():
     problem3 = prime_factors(600851475143)
     print "Problem 3: %d" % max(problem3)
 
+    problem4 = largest_palindrome(3)
+    print "Problem 4: %d" % problem4
+
 
 if __name__ == "__main__":
     main()
