@@ -91,6 +91,11 @@ def even(generator):
     return (i for i in generator if i % 2 == 0)
 
 
+def nth(n, generator):
+    """Return nth item from generator."""
+    return next(itertools.islice(generator, start=n, stop=n+1))
+
+
 def main():
     problem1 = below(1000, multiples_of_3_and_5())
     print "Problem 1: %d" % sum(problem1)
