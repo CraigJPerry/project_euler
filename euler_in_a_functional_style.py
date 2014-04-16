@@ -34,8 +34,15 @@ def prime_factors(number):
             yield number
             break
 
-def largest_palindrome(max_digits_in_factors):
-    return 9009
+
+def largest_palindrome(places):
+    """Problem 4: Largest palindrome from 2 factors up to 'places' wide."""
+    maximum_value = int(math.pow(10, places) - 1)
+    for i in xrange(maximum_value, 0, -1):
+        for j in xrange(maximum_value, 0, -1):
+            palindrome = str(i * j)
+            if palindrome == palindrome[::-1]:
+                return int(palindrome)
 
 
 ################################################################################
