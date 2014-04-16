@@ -62,6 +62,12 @@ def smallest_evenly_divisible(start, end):
             return i
 
 
+def sum_square_difference(upper_limit):
+    sum_of_squares = reduce(lambda x, y: x + y*y, range(upper_limit + 1))
+    square_of_sum = sum(range(upper_limit + 1)) ** 2
+    return square_of_sum - sum_of_squares
+
+
 ################################################################################
 # Helper Functions
 ################################################################################
