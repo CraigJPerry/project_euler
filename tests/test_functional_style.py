@@ -79,7 +79,7 @@ class Problem8(unittest.TestCase):
 
     def test_simple_example(self):
         products = products_of(2, "12345")
-        self.assertEqual(max(products), 20)
+        self.assertEqual(max(products), 4*5)
 
     def test_harder_example(self):
         products = products_of(3, "1234567890")
