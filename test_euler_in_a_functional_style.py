@@ -4,7 +4,10 @@
 
 import unittest
 import itertools
-from euler import first, below, multiples_of_3_and_5, fibonacci, prime_factors
+from euler import (
+    first, below, multiples_of_3_and_5, fibonacci, prime_factors,
+    largest_palindrome
+)
 
 
 class Problem1(unittest.TestCase):
@@ -41,6 +44,12 @@ class Problem3(unittest.TestCase):
 
     def test_simple_case_21(self):
         self.verify_factors_for(21, (3, 7))
+
+
+class Problem4(unittest.TestCase):
+
+    def test_largest_two_digit_palindrome_example(self):
+        self.assertEqual(largest_palindrome(2), 9009)
 
 
 if __name__ == "__main__":

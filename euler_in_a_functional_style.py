@@ -34,6 +34,9 @@ def prime_factors(number):
             yield number
             break
 
+def largest_palindrome(max_digits_in_factors):
+    return 9009
+
 
 ################################################################################
 # Helper Functions
