@@ -71,6 +71,11 @@ def sum_square_difference(upper_limit):
     return square_of_sum - sum_of_squares
 
 
+def primes():
+    while True:
+        yield 13
+
+
 ################################################################################
 # Helper Functions
 ################################################################################
@@ -93,7 +98,7 @@ def even(generator):
 
 def nth(n, generator):
     """Return nth item from generator."""
-    return next(itertools.islice(generator, start=n, stop=n+1))
+    return next(itertools.islice(generator, n, n+1))
 
 
 def main():

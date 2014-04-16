@@ -5,7 +5,8 @@
 import unittest
 from euler.functional_style import (
     first, below, multiples_of_3_and_5, fibonacci, prime_factors,
-    palindromes, smallest_evenly_divisible, sum_square_difference
+    palindromes, smallest_evenly_divisible, sum_square_difference,
+    nth, primes
 )
 
 
@@ -66,6 +67,12 @@ class Problem6(unittest.TestCase):
 
     def test_given_example(self):
         self.assertEqual(sum_square_difference(10), 2640)
+
+
+class Problem7(unittest.TestCase):
+
+    def test_given_example(self):
+        self.assertEqual(nth(6, primes()), 13)
 
 
 if __name__ == "__main__":
