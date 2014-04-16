@@ -47,11 +47,14 @@ def palindromes(places):
 
 
 def smallest_evenly_divisible(start, end):
-    """Problem 5: Find smallest number evenly divisble but all numbers
+    """Problem 5: Find smallest number evenly divisible but all numbers
     between start and end."""
     all_nums = range(start, end + 1)
     for i in itertools.count(1):
-        if all(map(lambda x: i % x == 0, all_nums)):
+        for j in all_nums:
+            if i % j != 0:
+                break
+        else:
             return i
 
 
@@ -82,6 +85,9 @@ def main():
 
     problem4 = max(palindromes(3))
     print "Problem 4: %d (%d * %d)" % problem4
+
+    problem5 = smallest_evenly_divisible(1, 20)
+    print "Problem 5: %d" % problem5
 
 
 if __name__ == "__main__":
