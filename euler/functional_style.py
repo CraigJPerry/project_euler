@@ -187,7 +187,11 @@ def main():
     print "Problem 8: %d" % max(problem8)
 
     problem9 = product_of_ptriplet_which()
-    print "Problem 9: %s" % problem9[0]
+    a, b, c = problem9[1]
+    print "Problem 9: %s (%d < %d < %d)" % (problem9[0], a, b, c)
+
+    problem10 = sum(below(2000000, primes()))
+    print "Problem 10: %d" % problem10
 
 
 if __name__ == "__main__":

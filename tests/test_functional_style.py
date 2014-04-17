@@ -104,6 +104,12 @@ class Problem9(unittest.TestCase):
         self.assertTupleEqual((3, 4, 5), triplet)
 
 
+class Problem10(unittest.TestCase):
+
+    def test_simple_case(self):
+        sum_below_ten = sum(below(10, primes()))
+        self.assertEqual(sum_below_ten, 17)
+
 if __name__ == "__main__":
     unittest.main()
 
