@@ -215,7 +215,7 @@ def tablify(grid):
 
 def transpose(table):
     """Transpose a table."""
-    return zip(*table)
+    return [list(sequence) for sequence in zip(*table)]
 
 
 def main():
