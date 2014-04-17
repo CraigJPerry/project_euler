@@ -90,9 +90,13 @@ class Problem9(unittest.TestCase):
     def test_non_ptriplet(self):
         self.assertFalse(is_pythagorean_triplet(3, 4, 6))
 
-    def test_candidates_generator(self):
-        sequence = tuple(pythagorean_triplets(12))
-        self.assertTupleEqual(sequence, ((3, 4, 5),))
+    def test_triplet_finder_returns_tuple_when_found(self):
+        sequence = pythagorean_triplet_finder(12)
+        self.assertTupleEqual(sequence, (3, 4, 5))
+
+    def test_triplet_finder_returns_none_when_not_found(self):
+        sequence = pythagorean_triplet_finder(13)
+        self.assertIsNone(sequence)
 
     def test_product_of_ptriplet(self):
         product, triplet = product_of_ptriplet_which(sums_to=12)
