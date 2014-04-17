@@ -111,7 +111,7 @@ def products_of(n=5, sequence=None):
     sequence = str(sequence).replace(" ", "").replace("\n", "")
     sliding_window = (sequence[offset:offset+n] for offset in xrange(len(sequence) - n + 1))
     for chunk in sliding_window:
-        yield reduce(lambda x, y: int(x)*int(y), chunk)
+        yield product(chunk)
 
 
 def is_pythagorean_triplet(a, b, c):
@@ -132,7 +132,7 @@ def product_of_ptriplet_which(sums_to=1000):
     """Problem 9: Find the product of the pythagorean triplet which sums to n."""
     triplet = pythagorean_triplet_finder(sums_to)
     if triplet:
-        return reduce(lambda x, y: x*y, triplet), triplet
+        return product(triplet), triplet
     return None, None
 
 
@@ -247,6 +247,10 @@ def mirror(table):
     """Mirror a table around the vertical centrepoint."""
     return [list(reversed(row)) for row in table]
 
+def product(sequence):
+    """Compute the product of terms in a sequence."""
+    return reduce(lambda x, y: int(x) * int(y), sequence)
+
 
 def main():
     problem1 = below(1000, multiples_of_3_and_5())
@@ -279,6 +283,9 @@ def main():
 
     problem10 = sum(below(2000000, primes()))
     print "Problem 10: %d" % problem10
+
+    problem11 = max(product(sequence) for sequence in grid_sequencer())
+    print "Problem 11: %d" % problem11
 
 
 if __name__ == "__main__":
