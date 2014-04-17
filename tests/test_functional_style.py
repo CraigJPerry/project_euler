@@ -110,6 +110,83 @@ class Problem10(unittest.TestCase):
         sum_below_ten = sum(below(10, primes()))
         self.assertEqual(sum_below_ten, 17)
 
+
+class Problem11(unittest.TestCase):
+
+    TEST_TABLE = tablify("""
+        08 02 22 97 38
+        49 49 99 40 17
+        81 49 31 73 55
+        52 70 95 23 04
+        22 31 16 71 51
+    """)
+
+    def test_horizontal_sequencer(self):
+        sequence = horizontal_sequencer(3, self.TEST_TABLE)
+        self.assertEqual(next(sequence), [8, 2, 22])
+        self.assertEqual(next(sequence), [2, 22, 97])
+
+    def test_horiztonal_sequencer_in_single_chunks(self):
+        sequence = horizontal_sequencer(1, self.TEST_TABLE)
+        self.assertEqual(next(sequence), [8])
+        self.assertEqual(next(sequence), [2])
+
+    def test_horiztonal_sequencer_in_row_sized_chunks(self):
+        sequence = horizontal_sequencer(5, self.TEST_TABLE)
+        self.assertEqual(next(sequence), [8, 2, 22, 97, 38])
+        self.assertEqual(next(sequence), [49, 49, 99, 40, 17])
+
+    def test_horiztonal_sequencer_in_oversized_sized_chunks(self):
+        sequence = horizontal_sequencer(6, self.TEST_TABLE)
+        self.assertRaises(StopIteration, next, sequence)
+
+    def test_vertical_sequencer(self):
+        sequence = vertical_sequencer(3, self.TEST_TABLE)
+        self.assertEqual(next(sequence), [8, 49, 81])
+        self.assertEqual(next(sequence), [49, 81, 52])
+
+    def test_left_diagonal_sequencer(self):
+        sequence = left_diagonal_sequencer(3, self.TEST_TABLE)
+        self.assertEqual(next(sequence), [8, 49, 31])
+        self.assertEqual(next(sequence), [2, 99, 73])
+
+    def test_left_diagonal_sequencer_end_of_row(self):
+        sequence = left_diagonal_sequencer(4, self.TEST_TABLE)
+        self.assertEqual(next(sequence), [8, 49, 31, 23])
+        self.assertEqual(next(sequence), [2, 99, 73, 4])
+        self.assertEqual(next(sequence), [49, 49, 95, 71])
+
+    def test_right_diagonal_sequencer_end_of_row(self):
+        sequence = right_diagonal_sequencer(4, self.TEST_TABLE)
+        self.assertEqual(next(sequence), [38, 40, 31, 70])
+
+    def test_grid_sequencer(self):
+        small_table = """
+           08 02 22
+           49 49 99
+           81 49 31
+        """
+        sequence = grid_sequencer(3, small_table)
+
+        # Horizontal sequencer
+        self.assertEqual(next(sequence), [8, 2, 22])
+        self.assertEqual(next(sequence), [49, 49, 99])
+        self.assertEqual(next(sequence), [81, 49, 31])
+
+        # Vertical sequencer
+        self.assertEqual(next(sequence), [8, 49, 81])
+        self.assertEqual(next(sequence), [2, 49, 49])
+        self.assertEqual(next(sequence), [22, 99, 31])
+
+        # Left diagonal sequencer
+        self.assertEqual(next(sequence), [8, 49, 31])
+
+        # Right diagonal sequencer
+        self.assertEqual(next(sequence), [22, 49, 81])
+
+        self.assertRaises(StopIteration, next, sequence)
+
+
 if __name__ == "__main__":
     unittest.main()
 

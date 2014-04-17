@@ -111,7 +111,7 @@ def products_of(n=5, sequence=None):
     sequence = str(sequence).replace(" ", "").replace("\n", "")
     sliding_window = (sequence[offset:offset+n] for offset in xrange(len(sequence) - n + 1))
     for chunk in sliding_window:
-        yield reduce(lambda x, y: int(x)*int(y), chunk)
+        yield product(chunk)
 
 
 def is_pythagorean_triplet(a, b, c):
@@ -132,8 +132,80 @@ def product_of_ptriplet_which(sums_to=1000):
     """Problem 9: Find the product of the pythagorean triplet which sums to n."""
     triplet = pythagorean_triplet_finder(sums_to)
     if triplet:
-        return reduce(lambda x, y: x*y, triplet), triplet
+        return product(triplet), triplet
     return None, None
+
+
+# Problem 10 was solved with existing functionality, no new code.
+
+
+def horizontal_sequencer(n, table):
+    """Problem 11: Chunkify a table into horizontal sequences of n."""
+    return (row[offset:offset + n] for row in table for offset in xrange(len(row) - n + 1))
+
+
+def vertical_sequencer(n, table):
+    """Problem 11: Chunkify a table into vertical sequences of n. Same
+    problem as horizontal_sequencer but with the table transposed"""
+    return horizontal_sequencer(n, transpose(table))
+
+
+def left_diagonal_sequencer(n, table):
+    """Problem 11: Chunkify a table into left-diagonal sequences of n."""
+    # n iterators. Starting offset at n-1 down and n-1 along from row a.
+    # Single steps until end of row - (n - starting offset)
+    # Repeat for row a+1 until row a+1 == num rows - n
+    vertical_iterators = []
+    for row in range(len(table) - n + 1):
+        horizontal_iterators = []
+        for i in range(n):
+            row_wise = (cell for cell in table[row + i])
+            for _ in range(i):
+                next(row_wise)
+            horizontal_iterators.append(row_wise)
+        vertical_iterators.append(itertools.imap(lambda x: list(x), itertools.izip(*horizontal_iterators)))
+    return itertools.chain(*vertical_iterators)
+
+
+def right_diagonal_sequencer(n, table):
+    """Problem 11: Chunkify a table into right-diagonal sequences of n.
+    Same problem as LDS but with the table mirrored on a vertical axis."""
+    return left_diagonal_sequencer(n, mirror(table))
+
+
+def grid_sequencer(n=4, grid=None):
+    """Problem 11: break a grid into sequences of n from the vertical,
+    horizontal, left diagonal and right diagonal directions."""
+    if grid is None:
+        grid = """
+            08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
+            49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
+            81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
+            52 70 95 23 04 60 11 42 69 24 68 56 01 32 56 71 37 02 36 91
+            22 31 16 71 51 67 63 89 41 92 36 54 22 40 40 28 66 33 13 80
+            24 47 32 60 99 03 45 02 44 75 33 53 78 36 84 20 35 17 12 50
+            32 98 81 28 64 23 67 10 26 38 40 67 59 54 70 66 18 38 64 70
+            67 26 20 68 02 62 12 20 95 63 94 39 63 08 40 91 66 49 94 21
+            24 55 58 05 66 73 99 26 97 17 78 78 96 83 14 88 34 89 63 72
+            21 36 23 09 75 00 76 44 20 45 35 14 00 61 33 97 34 31 33 95
+            78 17 53 28 22 75 31 67 15 94 03 80 04 62 16 14 09 53 56 92
+            16 39 05 42 96 35 31 47 55 58 88 24 00 17 54 24 36 29 85 57
+            86 56 00 48 35 71 89 07 05 44 44 37 44 60 21 58 51 54 17 58
+            19 80 81 68 05 94 47 69 28 73 92 13 86 52 17 77 04 89 55 40
+            04 52 08 83 97 35 99 16 07 97 57 32 16 26 26 79 33 27 98 66
+            88 36 68 87 57 62 20 72 03 46 33 67 46 55 12 32 63 93 53 69
+            04 42 16 73 38 25 39 11 24 94 72 18 08 46 29 32 40 62 76 36
+            20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16
+            20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
+            01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
+        """
+    table = tablify(grid)
+    return itertools.chain(
+        horizontal_sequencer(n, table),
+        vertical_sequencer(n, table),
+        left_diagonal_sequencer(n, table),
+        right_diagonal_sequencer(n, table)
+    )
 
 
 ################################################################################
@@ -159,6 +231,25 @@ def even(generator):
 def nth(n, generator):
     """Return nth item from generator."""
     return next(itertools.islice(generator, n-1, n))
+
+
+def tablify(grid):
+    """Parse a textual table into a list of lists."""
+    return [[int(cell) for cell in line.split() if cell] for line in grid.splitlines() if line and not line.isspace()]
+
+
+def transpose(table):
+    """Transpose a table (list of lists)."""
+    return [list(sequence) for sequence in zip(*table)]  # zip returns tuples
+
+
+def mirror(table):
+    """Mirror a table around the vertical centrepoint."""
+    return [list(reversed(row)) for row in table]
+
+def product(sequence):
+    """Compute the product of terms in a sequence."""
+    return reduce(lambda x, y: int(x) * int(y), sequence)
 
 
 def main():
@@ -192,6 +283,9 @@ def main():
 
     problem10 = sum(below(2000000, primes()))
     print "Problem 10: %d" % problem10
+
+    problem11 = max(product(sequence) for sequence in grid_sequencer())
+    print "Problem 11: %d" % problem11
 
 
 if __name__ == "__main__":
