@@ -110,6 +110,23 @@ class Problem10(unittest.TestCase):
         sum_below_ten = sum(below(10, primes()))
         self.assertEqual(sum_below_ten, 17)
 
+
+class Problem11(unittest.TestCase):
+
+    TEST_GRID = """\
+        08 02 22 97 38
+        49 49 99 40 17
+        81 49 31 73 55
+        52 70 95 23 04
+        22 31 16 71 51
+    """
+
+    def test_simple_case(self):
+        sequence = grid_sequencer(3, self.TEST_GRID)
+        self.assertEqual(next(sequence), [8, 2, 22])
+        self.assertEqual(next(sequence), [2, 22, 97])
+
+
 if __name__ == "__main__":
     unittest.main()
 
