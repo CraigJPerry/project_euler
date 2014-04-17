@@ -126,6 +126,11 @@ class Problem11(unittest.TestCase):
         self.assertEqual(next(sequence), [8, 2, 22])
         self.assertEqual(next(sequence), [2, 22, 97])
 
+    def test_vertical_sequencer(self):
+        sequence = vertical_sequencer(3, self.TEST_TABLE)
+        self.assertEqual(next(sequence), [8, 49, 81])
+        self.assertEqual(next(sequence), [49, 81, 52])
+
 
 if __name__ == "__main__":
     unittest.main()

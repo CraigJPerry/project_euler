@@ -140,11 +140,19 @@ def product_of_ptriplet_which(sums_to=1000):
 
 
 def horizontal_sequencer(n, table):
+    """Problem 11: Chunkify a table into horizontal sequences of n."""
     return (row[offset:offset + n] for row in table for offset in xrange(len(row) - n + 1))
 
 
+def vertical_sequencer(n, table):
+    """Problem 11: Chunkify a table into vertical sequences of n. Same
+    problem as horizontal_sequencer but with the table transposed"""
+    return horizontal_sequencer(n, transpose(table))
+
+
 def grid_sequencer(n=4, grid=None):
-    """Problem 11: break a grid into sequences of n, in all directions."""
+    """Problem 11: break a grid into sequences of n from the vertical,
+    horizontal, left diagonal and right diagonal directions."""
     if grid is None:
         grid = """
             08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -202,6 +210,11 @@ def nth(n, generator):
 def tablify(grid):
     """Parse a textual table into a list of lists."""
     return [[int(cell) for cell in line.split() if cell] for line in grid.splitlines() if not line.isspace()]
+
+
+def transpose(table):
+    """Transpose a table."""
+    return zip(*table)
 
 
 def main():
