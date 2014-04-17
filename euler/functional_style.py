@@ -152,19 +152,9 @@ def vertical_sequencer(n, table):
 
 def left_diagonal_sequencer(n, table):
     """Problem 11: Chunkify a table into left-diagonal sequences of n."""
-    # n iterators. Starting offset at n-1 down and n-1 along from row a.
-    # Single steps until end of row - (n - starting offset)
-    # Repeat for row a+1 until row a+1 == num rows - n
-    vertical_iterators = []
-    for row in range(len(table) - n + 1):
-        horizontal_iterators = []
-        for i in range(n):
-            row_wise = (cell for cell in table[row + i])
-            for _ in range(i):
-                next(row_wise)
-            horizontal_iterators.append(row_wise)
-        vertical_iterators.append(itertools.imap(lambda x: list(x), itertools.izip(*horizontal_iterators)))
-    return itertools.chain(*vertical_iterators)
+    x_limit = len(table[0]) - n + 1
+    y_limit = len(table) - n + 1
+    return ([table[i][j] for (i, j) in zip(xrange(x, x+n), xrange(y, y+n))] for x in xrange(x_limit) for y in xrange(y_limit))
 
 
 def right_diagonal_sequencer(n, table):
