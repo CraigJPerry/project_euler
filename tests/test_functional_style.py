@@ -113,16 +113,16 @@ class Problem10(unittest.TestCase):
 
 class Problem11(unittest.TestCase):
 
-    TEST_GRID = """\
+    TEST_TABLE = tablify("""\
         08 02 22 97 38
         49 49 99 40 17
         81 49 31 73 55
         52 70 95 23 04
         22 31 16 71 51
-    """
+    """)
 
-    def test_simple_case(self):
-        sequence = grid_sequencer(3, self.TEST_GRID)
+    def test_horizontal_sequencer(self):
+        sequence = horizontal_sequencer(3, self.TEST_TABLE)
         self.assertEqual(next(sequence), [8, 2, 22])
         self.assertEqual(next(sequence), [2, 22, 97])
 
