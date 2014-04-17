@@ -178,7 +178,8 @@ def grid_sequencer(n=4, grid=None):
         """
     table = tablify(grid)
     return itertools.chain(
-        horizontal_sequencer(n, table)
+        horizontal_sequencer(n, table),
+        vertical_sequencer(n, table)
     )
 
 
