@@ -131,6 +131,15 @@ class Problem11(unittest.TestCase):
         self.assertEqual(next(sequence), [8])
         self.assertEqual(next(sequence), [2])
 
+    def test_horiztonal_sequencer_in_row_sized_chunks(self):
+        sequence = horizontal_sequencer(5, self.TEST_TABLE)
+        self.assertEqual(next(sequence), [8, 2, 22, 97, 38])
+        self.assertEqual(next(sequence), [49, 49, 99, 40, 17])
+
+    def test_horiztonal_sequencer_in_oversized_sized_chunks(self):
+        sequence = horizontal_sequencer(6, self.TEST_TABLE)
+        self.assertRaises(StopIteration, next, sequence)
+
     def test_vertical_sequencer(self):
         sequence = vertical_sequencer(3, self.TEST_TABLE)
         self.assertEqual(next(sequence), [8, 49, 81])
