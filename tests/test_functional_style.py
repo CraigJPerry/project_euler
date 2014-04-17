@@ -113,7 +113,7 @@ class Problem10(unittest.TestCase):
 
 class Problem11(unittest.TestCase):
 
-    TEST_TABLE = tablify("""\
+    TEST_TABLE = tablify("""
         08 02 22 97 38
         49 49 99 40 17
         81 49 31 73 55
@@ -125,6 +125,11 @@ class Problem11(unittest.TestCase):
         sequence = horizontal_sequencer(3, self.TEST_TABLE)
         self.assertEqual(next(sequence), [8, 2, 22])
         self.assertEqual(next(sequence), [2, 22, 97])
+
+    def test_horiztonal_sequencer_in_single_chunks(self):
+        sequence = horizontal_sequencer(1, self.TEST_TABLE)
+        self.assertEqual(next(sequence), [8])
+        self.assertEqual(next(sequence), [2])
 
     def test_vertical_sequencer(self):
         sequence = vertical_sequencer(3, self.TEST_TABLE)

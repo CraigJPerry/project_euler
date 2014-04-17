@@ -152,6 +152,9 @@ def vertical_sequencer(n, table):
 
 def left_diagonal_sequencer(n, table):
     """Problem 11: Chunkify a table into horizontal sequences of n."""
+    # n iterators. Starting offset at n-1 down and n-1 along from row a.
+    # Single steps until end of row - (n - starting offset)
+    # Repeat for row a+1 until row a+1 == num rows - n
     return (row[offset:offset + n] for row in table for offset in xrange(len(row) - n + 1))
 
 
@@ -215,7 +218,7 @@ def nth(n, generator):
 
 def tablify(grid):
     """Parse a textual table into a list of lists."""
-    return [[int(cell) for cell in line.split() if cell] for line in grid.splitlines() if not line.isspace()]
+    return [[int(cell) for cell in line.split() if cell] for line in grid.splitlines() if line and not line.isspace()]
 
 
 def transpose(table):
