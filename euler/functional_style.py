@@ -139,6 +139,10 @@ def product_of_ptriplet_which(sums_to=1000):
 # Problem 10 was solved with existing functionality, no new code.
 
 
+def horizontal_sequencer(n, table):
+    return (row[offset:offset + n] for row in table for offset in xrange(len(row) - n + 1))
+
+
 def grid_sequencer(n=4, grid=None):
     """Problem 11: break a grid into sequences of n, in all directions."""
     if grid is None:
@@ -165,8 +169,7 @@ def grid_sequencer(n=4, grid=None):
             01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
         """
     table = [[int(cell) for cell in line.split() if cell] for line in grid.splitlines() if not line.isspace()]
-    horiztonal_sequencer = (row[offset:offset+n] for row in table for offset in xrange(len(row) - n + 1))
-    return itertools.chain(horiztonal_sequencer)
+    return itertools.chain(horizontal_sequencer(n, table))
 
 
 ################################################################################
