@@ -247,6 +247,7 @@ def mirror(table):
     """Mirror a table around the vertical centrepoint."""
     return [list(reversed(row)) for row in table]
 
+
 def product(sequence):
     """Compute the product of terms in a sequence."""
     return reduce(lambda x, y: int(x) * int(y), sequence)
