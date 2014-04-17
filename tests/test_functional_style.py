@@ -3,11 +3,7 @@
 
 
 import unittest
-from euler.functional_style import (
-    first, below, multiples_of_3_and_5, fibonacci, prime_factors,
-    palindromes, smallest_evenly_divisible, sum_square_difference,
-    nth, primes, products_of
-)
+from euler.functional_style import *
 
 
 class Problem1(unittest.TestCase):
@@ -84,6 +80,24 @@ class Problem8(unittest.TestCase):
     def test_harder_example(self):
         products = products_of(3, "1234567890")
         self.assertEqual(max(products), 7*8*9)
+
+
+class Problem9(unittest.TestCase):
+
+    def test_valid_ptriplet(self):
+        self.assertTrue(is_pythagorean_triplet(3, 4, 5))
+
+    def test_non_ptriplet(self):
+        self.assertFalse(is_pythagorean_triplet(3, 4, 6))
+
+    def test_candidates_generator(self):
+        sequence = tuple(pythagorean_triplets(12))
+        self.assertTupleEqual(sequence, ((3, 4, 5),))
+
+    def test_product_of_ptriplet(self):
+        product, triplet = product_of_ptriplet_which(sums_to=12)
+        self.assertEqual(product, 60)
+        self.assertTupleEqual((3, 4, 5), triplet)
 
 
 if __name__ == "__main__":

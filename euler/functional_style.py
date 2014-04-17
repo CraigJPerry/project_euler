@@ -114,6 +114,26 @@ def products_of(n=5, sequence=None):
         yield reduce(lambda x, y: int(x)*int(y), chunk)
 
 
+def is_pythagorean_triplet(a, b, c):
+    """Problem 9: Identify pythagorean triplets."""
+    return a < b < c and a ** 2 + b ** 2 == c ** 2
+
+
+def pythagorean_triplets(sums_to):
+    """Problem 9: Generate triplets which sums to below the given value."""
+    return ((a, b, c) for c in xrange(sums_to-2, 0, -1)
+                          for b in xrange(c-1, 0, -1)
+                              for a in xrange(b-1, 0, -1)
+                                  if is_pythagorean_triplet(a, b, c)
+                                      and sum((a, b, c)) == 1000)
+
+
+def product_of_ptriplet_which(sums_to=1000):
+    """Problem 9: Find the product of the pythagorean triplet which sums to n."""
+    triplet = next(triplet for triplet in pythagorean_triplets(sums_to))
+    return reduce(lambda x, y: x*y, triplet), triplet
+
+
 ################################################################################
 # Helper Functions
 ################################################################################
@@ -163,6 +183,9 @@ def main():
 
     problem8 = products_of()
     print "Problem 8: %d" % max(problem8)
+
+    problem9 = product_of_ptriplet_which()
+    print "Problem 9: %s" % problem9[0]
 
 
 if __name__ == "__main__":
