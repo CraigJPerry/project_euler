@@ -150,6 +150,11 @@ def vertical_sequencer(n, table):
     return horizontal_sequencer(n, transpose(table))
 
 
+def left_diagonal_sequencer(n, table):
+    """Problem 11: Chunkify a table into horizontal sequences of n."""
+    return (row[offset:offset + n] for row in table for offset in xrange(len(row) - n + 1))
+
+
 def grid_sequencer(n=4, grid=None):
     """Problem 11: break a grid into sequences of n from the vertical,
     horizontal, left diagonal and right diagonal directions."""
@@ -214,8 +219,8 @@ def tablify(grid):
 
 
 def transpose(table):
-    """Transpose a table."""
-    return [list(sequence) for sequence in zip(*table)]
+    """Transpose a table (list of lists)."""
+    return [list(sequence) for sequence in zip(*table)]  # zip returns tuples
 
 
 def main():

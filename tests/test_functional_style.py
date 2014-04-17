@@ -131,6 +131,11 @@ class Problem11(unittest.TestCase):
         self.assertEqual(next(sequence), [8, 49, 81])
         self.assertEqual(next(sequence), [49, 81, 52])
 
+    def test_left_diagonal_sequencer(self):
+        sequence = left_diagonal_sequencer(3, self.TEST_TABLE)
+        self.assertEqual(next(sequence), [8, 49, 31])
+        self.assertEqual(next(sequence), [2, 99, 73])
+
 
 if __name__ == "__main__":
     unittest.main()
