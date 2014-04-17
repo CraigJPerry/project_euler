@@ -151,7 +151,7 @@ def vertical_sequencer(n, table):
 
 
 def left_diagonal_sequencer(n, table):
-    """Problem 11: Chunkify a table into horizontal sequences of n."""
+    """Problem 11: Chunkify a table into left-diagonal sequences of n."""
     # n iterators. Starting offset at n-1 down and n-1 along from row a.
     # Single steps until end of row - (n - starting offset)
     # Repeat for row a+1 until row a+1 == num rows - n
@@ -165,6 +165,12 @@ def left_diagonal_sequencer(n, table):
             horizontal_iterators.append(row_wise)
         vertical_iterators.append(itertools.imap(lambda x: list(x), itertools.izip(*horizontal_iterators)))
     return itertools.chain(*vertical_iterators)
+
+
+def right_diagonal_sequencer(n, table):
+    """Problem 11: Chunkify a table into right-diagonal sequences of n.
+    Same problem as LDS but with the table mirrored on a vertical axis."""
+    return left_diagonal_sequencer(n, mirror(table))
 
 
 def grid_sequencer(n=4, grid=None):
@@ -196,7 +202,9 @@ def grid_sequencer(n=4, grid=None):
     table = tablify(grid)
     return itertools.chain(
         horizontal_sequencer(n, table),
-        vertical_sequencer(n, table)
+        vertical_sequencer(n, table),
+        left_diagonal_sequencer(n, table),
+        right_diagonal_sequencer(n, table)
     )
 
 
@@ -233,6 +241,11 @@ def tablify(grid):
 def transpose(table):
     """Transpose a table (list of lists)."""
     return [list(sequence) for sequence in zip(*table)]  # zip returns tuples
+
+
+def mirror(table):
+    """Mirror a table around the vertical centrepoint."""
+    return [list(reversed(row)) for row in table]
 
 
 def main():

@@ -156,6 +156,36 @@ class Problem11(unittest.TestCase):
         self.assertEqual(next(sequence), [2, 99, 73, 4])
         self.assertEqual(next(sequence), [49, 49, 95, 71])
 
+    def test_right_diagonal_sequencer_end_of_row(self):
+        sequence = right_diagonal_sequencer(4, self.TEST_TABLE)
+        self.assertEqual(next(sequence), [38, 40, 31, 70])
+
+    def test_grid_sequencer(self):
+        small_table = """
+           08 02 22
+           49 49 99
+           81 49 31
+        """
+        sequence = grid_sequencer(3, small_table)
+
+        # Horizontal sequencer
+        self.assertEqual(next(sequence), [8, 2, 22])
+        self.assertEqual(next(sequence), [49, 49, 99])
+        self.assertEqual(next(sequence), [81, 49, 31])
+
+        # Vertical sequencer
+        self.assertEqual(next(sequence), [8, 49, 81])
+        self.assertEqual(next(sequence), [2, 49, 49])
+        self.assertEqual(next(sequence), [22, 99, 31])
+
+        # Left diagonal sequencer
+        self.assertEqual(next(sequence), [8, 49, 31])
+
+        # Right diagonal sequencer
+        self.assertEqual(next(sequence), [22, 49, 81])
+
+        self.assertRaises(StopIteration, next, sequence)
+
 
 if __name__ == "__main__":
     unittest.main()
