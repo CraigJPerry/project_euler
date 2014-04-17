@@ -155,14 +155,16 @@ def left_diagonal_sequencer(n, table):
     # n iterators. Starting offset at n-1 down and n-1 along from row a.
     # Single steps until end of row - (n - starting offset)
     # Repeat for row a+1 until row a+1 == num rows - n
-    iterators = []
-    row = 0
-    for i in range(n):
-        row_wise = (cell for cell in table[row + i])
-        for _ in range(i):
-            next(row_wise)
-        iterators.append(row_wise)
-    return itertools.imap(lambda x: list(x), itertools.izip(*iterators))
+    vertical_iterators = []
+    for row in range(len(table) - n + 1):
+        horizontal_iterators = []
+        for i in range(n):
+            row_wise = (cell for cell in table[row + i])
+            for _ in range(i):
+                next(row_wise)
+            horizontal_iterators.append(row_wise)
+        vertical_iterators.append(itertools.imap(lambda x: list(x), itertools.izip(*horizontal_iterators)))
+    return itertools.chain(*vertical_iterators)
 
 
 def grid_sequencer(n=4, grid=None):
