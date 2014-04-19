@@ -6,6 +6,8 @@
 
 
 from setuptools import setup, find_packages
+from distutils.extension import Extension
+from Cython.Distutils import build_ext
 
 
 __version__ = "0.1.1"
@@ -21,6 +23,8 @@ setup(
     author="Craig J Perry",
     author_email="craigp84@gmail.com",
     install_requires=REQUIREMENTS,
-    packages=find_packages(exclude=["tests"])
+    packages=find_packages(exclude=["tests"]),
+    cmdclass = {'build_ext': build_ext},
+    ext_modules = [Extension("euler.native_primes", ["euler/native_primes.pyx"])]
 )
 

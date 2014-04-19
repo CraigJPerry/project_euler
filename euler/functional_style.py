@@ -7,6 +7,7 @@ in a (largely) functional style of programming."""
 
 import math
 import itertools
+from euler.native_primes import primes
 
 
 def multiples_of_3_and_5():
@@ -71,7 +72,7 @@ def sum_square_difference(upper_limit):
     return square_of_sum - sum_of_squares
 
 
-def primes():
+def pyprimes():
     """Problem 7: Infinite prime numbers generator."""
     seen = set()
     for candidate in itertools.count(2):
@@ -262,7 +263,8 @@ def main():
     problem6 = sum_square_difference(100)
     print "Problem 6: %d" % problem6
 
-    problem7 = nth(10001, primes())
+    # problem7 = nth(10001, primes())
+    problem7 = primes(104743)[-1]
     print "Problem 7: %d" % problem7
 
     problem8 = products_of()
@@ -272,7 +274,8 @@ def main():
     a, b, c = problem9[1]
     print "Problem 9: %s (%d < %d < %d)" % (problem9[0], a, b, c)
 
-    problem10 = sum(below(2000000, primes()))
+    # problem10 = sum(below(2000000, primes()))
+    problem10 = sum(primes(2000000))
     print "Problem 10: %d" % problem10
 
     problem11 = max(product(sequence) for sequence in grid_sequencer())
