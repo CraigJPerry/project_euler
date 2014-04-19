@@ -16,8 +16,7 @@ class CompilationWorked(unittest.TestCase):
 class NumericalAccuracy(unittest.TestCase):
 
     def test_first_ten_primes(self):
-        #           1      2     3     4      5     6      7     8      9      10
-        expected = [False, True, True, False, True, False, True, False, False, False]
+        expected = [2, 3, 5, 7]
         self.assertListEqual(expected, primes(10))
 
 

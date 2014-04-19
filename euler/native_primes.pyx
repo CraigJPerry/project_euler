@@ -26,7 +26,7 @@ def primes(int limit):
                 for j in range(i*i, limit+1, i):
                     is_prime[j-1] = 0
 
-        return [bool(is_prime[i]) for i in range(limit)]
+        return [i+1 for i in range(limit) if is_prime[i]]
     finally:
         PyMem_Free(is_prime)
 
