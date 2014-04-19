@@ -17,13 +17,14 @@ def primes(int limit):
         # Assume everything's prime to begin with
         for i in range(limit):
             is_prime[i] = 1
+        is_prime[0] = 0  # 1 is not a prime (zero indexed array)
 
         # Sieve the primes...
-        for i in range(2, <long>sqrt(limit)):
-            if is_prime[i]:
+        for i in range(2, <long>sqrt(limit) + 1):
+            if is_prime[i-1]:
                 # ...and flag the composites (NB: squared optimisation)
-                for j in range((i*i)-1, limit, i):
-                    is_prime[j] = 0
+                for j in range(i*i, limit+1, i):
+                    is_prime[j-1] = 0
 
         return [bool(is_prime[i]) for i in range(limit)]
     finally:
