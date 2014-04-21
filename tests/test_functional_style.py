@@ -68,7 +68,7 @@ class Problem6(unittest.TestCase):
 class Problem7(unittest.TestCase):
 
     def test_validate_against_given_example(self):
-        self.assertEqual(13, nth(6, primes()))
+        self.assertEqual(13, nth(6, pyprimes()))
 
 
 class Problem8(unittest.TestCase):
@@ -107,7 +107,7 @@ class Problem9(unittest.TestCase):
 class Problem10(unittest.TestCase):
 
     def test_validate_against_given_example(self):
-        sum_below_ten = sum(below(10, primes()))
+        sum_below_ten = sum(below(10, pyprimes()))
         self.assertEqual(17, sum_below_ten)
 
 
