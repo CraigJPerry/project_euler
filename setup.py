@@ -25,6 +25,11 @@ setup(
     install_requires=REQUIREMENTS,
     packages=find_packages(exclude=["tests"]),
     cmdclass = {'build_ext': build_ext},
-    ext_modules = [Extension("euler.native_primes", ["euler/native_primes.pyx"])]
+    ext_modules = [Extension("euler.native_primes", ["euler/native_primes.pyx"])],
+    entry_points={
+        "console_scripts": [
+            "euler = euler.runner:main",
+        ]
+    }
 )
 
