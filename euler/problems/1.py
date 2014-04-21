@@ -18,7 +18,7 @@ from euler.helpers import below
 
 
 def multiples_of_3_and_5():
-    """Problem 1: Unbounded generator yielding multiples of 3 or 5."""
+    """Unbounded generator yielding multiples of 3 or 5."""
     return (x for x in itertools.count(1) if x % 3 == 0 or x % 5 == 0)
 
 
