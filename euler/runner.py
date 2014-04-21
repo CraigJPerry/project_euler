@@ -5,6 +5,7 @@
 """Application launcher."""
 
 import sys
+import time
 import importlib
 
 
@@ -13,9 +14,9 @@ def import_problem_module(problem_number):
     return importlib.import_module("euler.problems.%s" % problem_number)
 
 
-def render(problem_number, result, destination):
+def render(problem_number, result, destination, runtime):
     """Output formatted result for given problem to destination."""
-    print >> destination, "Problem %s: %s" % (problem_number, result)
+    print >> destination, "Problem %s: %s (%.3f)" % (problem_number, result, runtime)
 
 
 def usage(destination):
@@ -28,6 +29,14 @@ def error(destination, message):
     """Report a problem."""
     print >> destination, "ERROR: %s" % message
     return 2
+
+
+def run(module):
+    """Run a module and capture runtime statistics."""
+    start = time.time()
+    result = module.main()
+    end = time.time()
+    return result, end - start
 
 
 def main(argv=None, output=None):
@@ -48,9 +57,9 @@ def main(argv=None, output=None):
     except ImportError:
         return error(output, "No such problem: %s" % problem_number)
 
-    result = module.main()
+    result, runtime = run(module)
 
-    render(problem_number, result, output)
+    render(problem_number, result, output, runtime)
 
 
 if __name__ == "__main__":
