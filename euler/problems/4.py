@@ -16,7 +16,7 @@ import unittest
 
 
 def palindromes(places):
-    """Problem 4: Generate all palindromes of 2 factors  up to 'places' wide."""
+    """Generate all palindromes of 2 factors  up to 'places' wide."""
     maximum_value = 10 ** places
     for i in xrange(maximum_value):
         for j in xrange(maximum_value):
