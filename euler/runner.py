@@ -9,14 +9,14 @@ import time
 import importlib
 
 
-def import_problem_module(problem_number):
+def import_euler_problem_module(problem_number):
     """Retrieve module for the given problem."""
     return importlib.import_module("euler.problems.%s" % problem_number)
 
 
 def render(problem_number, result, destination, runtime):
     """Output formatted result for given problem to destination."""
-    print >> destination, "Problem %s: %s (%.3f)" % (problem_number, result, runtime)
+    print >> destination, "Problem %s: %s (%.3f secs)" % (problem_number, result, runtime)
 
 
 def usage(destination):
@@ -53,7 +53,7 @@ def main(argv=None, output=None):
     problem_number = argv[1]
 
     try:
-        module = import_problem_module(problem_number)
+        module = import_euler_problem_module(problem_number)
     except ImportError:
         return error(output, "No such problem: %s" % problem_number)
 
