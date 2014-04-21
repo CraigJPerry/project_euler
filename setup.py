@@ -24,8 +24,11 @@ setup(
     author_email="craigp84@gmail.com",
     install_requires=REQUIREMENTS,
     packages=find_packages(exclude=["tests"]),
-    cmdclass = {'build_ext': build_ext},
-    ext_modules = [Extension("euler.problems.seven", ["euler/problems/seven.pyx"])],
+    cmdclass={'build_ext': build_ext},
+    ext_modules=[
+        Extension("euler.problems.c7", ["euler/problems/c7.pyx"]),
+        Extension("euler.problems.c10", ["euler/problems/c10.pyx"]),
+    ],
     entry_points={
         "console_scripts": [
             "euler = euler.runner:main",

@@ -2,5 +2,5 @@
 .idea
 *.egg-info
 build
-euler/problems/seven.c
-euler/problems/seven.so
+euler/problems/*.c
+euler/problems/*.so
