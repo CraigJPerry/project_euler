@@ -14,7 +14,7 @@ class CanInvokeProblemRunner(unittest.TestCase):
 
     def test_can_run_individual_problems_by_number(self):
         main(["euler", "p1"], self.output)
-        self.assertIn("Problem 1:", self.output.getvalue())
+        self.assertIn("Problem p1:", self.output.getvalue())
 
     def test_invalid_problem_number_reports_appropriate_error_message(self):
         main(["euler", "invalid"], self.output)
