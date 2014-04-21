@@ -13,7 +13,7 @@ class CanInvokeProblemRunner(unittest.TestCase):
         self.output = StringIO()
 
     def test_can_run_individual_problems_by_number(self):
-        main(["euler", "1"], self.output)
+        main(["euler", "p1"], self.output)
         self.assertIn("Problem 1:", self.output.getvalue())
 
     def test_invalid_problem_number_reports_appropriate_error_message(self):
@@ -25,7 +25,7 @@ class CanInvokeProblemRunner(unittest.TestCase):
         self.assertIn("usage:", self.output.getvalue())
 
     def test_output_includes_runtime(self):
-        main(["euler", "1"], self.output)
+        main(["euler", "p1"], self.output)
         self.assertRegexpMatches(self.output.getvalue(), "\(\d+\.\d{3}\)")
 
 
