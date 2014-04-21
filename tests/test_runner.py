@@ -26,7 +26,7 @@ class CanInvokeProblemRunner(unittest.TestCase):
 
     def test_output_includes_runtime(self):
         main(["euler", "p1"], self.output)
-        self.assertRegexpMatches(self.output.getvalue(), "\(\d+\.\d{3}\)")
+        self.assertRegexpMatches(self.output.getvalue(), "\(\d+\.\d{3} secs\)")
 
 
 if __name__ == "__main__":
