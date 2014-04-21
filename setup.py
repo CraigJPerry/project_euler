@@ -10,7 +10,7 @@ from distutils.extension import Extension
 from Cython.Distutils import build_ext
 
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 README = open("README.rst").read()
 REQUIREMENTS = open("requirements.txt").readlines()
 
@@ -25,7 +25,7 @@ setup(
     install_requires=REQUIREMENTS,
     packages=find_packages(exclude=["tests"]),
     cmdclass = {'build_ext': build_ext},
-    ext_modules = [Extension("euler.native_primes", ["euler/native_primes.pyx"])],
+    ext_modules = [Extension("euler.problems.seven", ["euler/problems/seven.pyx"])],
     entry_points={
         "console_scripts": [
             "euler = euler.runner:main",
