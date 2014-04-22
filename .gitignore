@@ -2,5 +2,5 @@
 .idea
 *.egg-info
 build
-euler/native_primes.c
-euler/native_primes.so
+euler/problems/*.c
+euler/problems/*.so
