@@ -29,14 +29,25 @@ divisors?
 """
 
 import unittest
+import itertools
+from euler.helpers import first
+
+
+def triangle_numbers():
+    total = 0
+    for i in itertools.count(start=1):
+        total += i
+        yield total
 
 
 class Problem12(unittest.TestCase):
-    pass
+
+    def test_triangle_numbers_generator_correctly_reproduces_given_example_numbers(self):
+        self.assertTupleEqual((1, 3, 6, 10, 15, 21, 28, 36, 45, 55), tuple(first(10, triangle_numbers())))
 
 
 def main():
-    raise NotImplemented
+    raise NotImplementedError
 
 
 if __name__ == "__main__":
