@@ -47,7 +47,9 @@ class Problem14(unittest.TestCase):
 
 
 def main():
-    raise NotImplementedError
+    return max(
+        (len(tuple(collatz(i))), i) for i in range(1, 1000001)
+    )
 
 
 if __name__ == "__main__":
