@@ -74,7 +74,9 @@ class Problem12(unittest.TestCase):
 
 
 def main():
-    raise NotImplementedError
+    for triangle_num in triangle_numbers():
+        if len(all_divisors(triangle_num)) > 500:
+            return triangle_num
 
 
 if __name__ == "__main__":
