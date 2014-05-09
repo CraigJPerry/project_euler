@@ -46,3 +46,10 @@ def product(sequence):
     """Compute the product of terms in a sequence."""
     return reduce(lambda x, y: int(x) * int(y), sequence)
 
+
+def flattened_product_combinations(sequence):
+    """Combine the products of elements of sequence up to len(sequence)-1 size."""
+    return set(product(combination)
+               for size in range(1, len(sequence))
+               for combination in itertools.combinations(sequence, size))
+
