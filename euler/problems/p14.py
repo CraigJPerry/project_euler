@@ -29,8 +29,21 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 import unittest
 
 
+def collatz(n):
+    """Terms of the collatz sequence starting at n."""
+    while n != 1:
+        yield n
+        if n % 2:
+            n = (3 * n) + 1
+        else:
+            n /= 2
+    yield 1
+
+
 class Problem14(unittest.TestCase):
-    pass
+
+    def test_given_sequence(self):
+        self.assertEqual((13, 40, 20, 10, 5, 16, 8, 4, 2, 1), tuple(collatz(13)))
 
 
 def main():
