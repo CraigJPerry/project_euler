@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 # encoding: utf-8
 
 
@@ -30,20 +30,47 @@ divisors?
 
 import unittest
 import itertools
-from euler.helpers import first
+from euler.helpers import first, flattened_product_combinations
+from euler.problems.p3 import prime_factors as factorise
 
 
 def triangle_numbers():
+    """Infinite triangle numbers generator."""
     total = 0
     for i in itertools.count(start=1):
         total += i
         yield total
 
 
-class Problem12(unittest.TestCase):
+def all_divisors(number):
+    """Determine all prime and composite factors of number."""
+    prime_factors = tuple(factorise(number))
+    composite_factors = flattened_product_combinations((1,) + prime_factors)
+    return tuple(sorted(composite_factors))
 
-    def test_triangle_numbers_generator_correctly_reproduces_given_example_numbers(self):
+
+class Problem12(unittest.TestCase):
+    def test_triangle_numbers_generator_reproduces_example_numbers(self):
         self.assertTupleEqual((1, 3, 6, 10, 15, 21, 28, 36, 45, 55), tuple(first(10, triangle_numbers())))
+
+    def test_factors_of_one(self):
+        self.assertTupleEqual((1,), all_divisors(1))
+
+    def test_table_of_given_factors(self):
+        table = {
+            1: (1,),
+            3: (1, 3),
+            6: (1, 2, 3, 6),
+            10: (1, 2, 5, 10),
+            15: (1, 3, 5, 15),
+            21: (1, 3, 7, 21),
+            28: (1, 2, 4, 7, 14, 28)
+        }
+        for triangle_num, factors in table.items():
+            self.assertTupleEqual(factors, all_divisors(triangle_num))
+
+    def test_count_of_divisors(self):
+        self.assertGreater(len(all_divisors(28)), 5)
 
 
 def main():
